@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Package - CourierX</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-box"></i>
+                <span>CourierX</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="book.html">Book Delivery</a>
+                <a href="track.html" class="active">Track Package</a>
+                <a href="contact.html">Contact</a>
+                <div class="nav-buttons">
+                    <a href="signin.html" class="sign-in-btn"><i class="fas fa-user"></i> Sign In</a>
+                </div>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Track Package Section -->
+    <section class="track-package">
+        <div class="container">
+            <div class="section-header">
+                <h2>Track Your Package</h2>
+                <p>Enter your tracking number to get real-time updates</p>
+            </div>
+            <div class="tracking-form">
+                <form onsubmit="return handleTrackingSubmit(event)">
+                    <div class="form-group">
+                        <input type="text" id="trackingNumber" placeholder="Enter tracking number" required>
+                        <button type="submit" class="btn btn-primary">Track Now</button>
+                    </div>
+                </form>
+            </div>
+            <div class="tracking-result" id="trackingResult">
+                <div class="tracking-header">
+                    <div class="tracking-number">
+                        <span>Tracking Number:</span>
+                        <span id="trackingNumberDisplay">-</span>
+                    </div>
+                    <div class="tracking-status">
+                        <span>Status:</span>
+                        <span id="trackingStatus">-</span>
+                    </div>
+                </div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Estimated Delivery</span>
+                        <span class="value" id="estimatedDelivery">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Current Location</span>
+                        <span class="value" id="currentLocation">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Package Type</span>
+                        <span class="value" id="packageType">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Weight</span>
+                        <span class="value" id="packageWeight">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Shipping Cost</span>
+                        <span class="value" id="shippingCost">-</span>
+                    </div>
+                </div>
+                <div class="tracking-timeline">
+                    <h3>Tracking Timeline</h3>
+                    <div class="timeline" id="trackingTimeline">
+                        <!-- Timeline items will be added here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <a href="index.html" class="footer-logo">
+                        <i class="fas fa-box"></i>
+                        <span>CourierX</span>
+                    </a>
+                    <p>Delivering your packages safely and on time, every time. Your trusted partner in logistics and delivery solutions.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="track.html">Track Package</a></li>
+                        <li><a href="book.html">Book Delivery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="services.html#express">Express Delivery</a></li>
+                        <li><a href="services.html#international">International Shipping</a></li>
+                        <li><a href="services.html#warehousing">Warehousing</a></li>
+                        <li><a href="services.html#customs">Customs Clearance</a></li>
+                        <li><a href="services.html#insurance">Insurance Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 1234 Delivery Street, Courier City, CC 12345</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@courierx.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CourierX. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

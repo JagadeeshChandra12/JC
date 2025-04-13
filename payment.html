@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - CourierX</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">
+                    <i class="fas fa-box"></i>
+                    <span>CourierX</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="book.html">Book Delivery</a>
+                <a href="track.html">Track Package</a>
+                <a href="contact.html">Contact</a>
+                <div class="nav-buttons">
+                    <a href="signin.html" class="sign-in-btn"><i class="fas fa-user"></i> Sign In</a>
+                </div>
+            </div>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Payment Section -->
+    <section class="payment-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Complete Your Payment</h2>
+                <p>Review the total amount and proceed with the payment.</p>
+            </div>
+
+            <!-- Total Amount Display -->
+            <div class="order-summary">
+                <h2>Total Amount</h2>
+                <div class="summary-item total">
+                    <span class="label">Total:</span>
+                    <span class="value" id="totalAmountSummary">₹0</span>
+                </div>
+            </div>
+
+            <!-- Payment Form -->
+            <div class="payment-form">
+                <h2>Payment Method</h2>
+                <div class="payment-methods">
+                    <label class="payment-method">
+                        <input type="radio" name="paymentMethod" value="upi" required onchange="showPaymentForm('upi')">
+                        <div class="method-content">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>UPI Payment</span>
+                        </div>
+                    </label>
+                    <label class="payment-method">
+                        <input type="radio" name="paymentMethod" value="card" required onchange="showPaymentForm('card')">
+                        <div class="method-content">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Card Payment</span>
+                        </div>
+                    </label>
+                    <label class="payment-method">
+                        <input type="radio" name="paymentMethod" value="cod" required onchange="showPaymentForm('cod')">
+                        <div class="method-content">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Cash on Delivery</span>
+                        </div>
+                    </label>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="processPayment()">Pay Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <a href="index.html">
+                            <i class="fas fa-box"></i>
+                            <span>CourierX</span>
+                        </a>
+                    </div>
+                    <p>Delivering your packages safely and on time, every time. Your trusted partner in logistics and delivery solutions.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="track.html">Track Package</a></li>
+                        <li><a href="book.html">Book Delivery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="services.html#express">Express Delivery</a></li>
+                        <li><a href="services.html#international">International Shipping</a></li>
+                        <li><a href="services.html#warehousing">Warehousing</a></li>
+                        <li><a href="services.html#customs">Customs Clearance</a></li>
+                        <li><a href="services.html#insurance">Insurance Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 1234 Delivery Street, Courier City, CC 12345</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@courierx.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CourierX. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve and display the total amount from localStorage
+            const totalAmount = localStorage.getItem('bookingAmount') || '0';
+            document.getElementById('totalAmountSummary').textContent = `₹${totalAmount}`;
+        });
+
+        function generateTrackingId() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let trackingId = '';
+            for (let i = 0; i < 10; i++) {
+                trackingId += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return trackingId;
+        }
+
+        function processPayment() {
+            // Simulate payment processing
+            setTimeout(() => {
+                const trackingId = generateTrackingId();
+                displaySuccessMessage(trackingId);
+            }, 1000);
+        }
+
+        function displaySuccessMessage(trackingId) {
+            const paymentForm = document.querySelector('.payment-form');
+            paymentForm.innerHTML = `
+                <div class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Payment Successful!</h3>
+                    <p>Your order has been confirmed. Your tracking ID is:</p>
+                    <h4>${trackingId}</h4>
+                    <p>You can use this ID to track your package.</p>
+                    <a href="track.html" class="btn btn-primary">Track Your Package</a>
+                </div>
+            `;
+
+            // Store the tracking ID in localStorage for tracking purposes
+            localStorage.setItem('trackingId', trackingId);
+        }
+
+        function showPaymentForm(method) {
+            // Hide all payment forms
+            document.querySelectorAll('#paymentDetailsForms > div').forEach(form => {
+                form.style.display = 'none';
+            });
+
+            // Show the selected payment form
+            const selectedForm = document.getElementById(`${method}PaymentForm`);
+            if (selectedForm) selectedForm.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
